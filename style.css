@@ -1,0 +1,303 @@
+/* ==========================================================================
+   Colors and fonts. Change a value here and it updates across the page.
+   ========================================================================== */
+:root {
+  --bg: #F5F4F2;
+  --ink: #1F2A3C;
+  --muted: #5C6677;
+  --accent: #2F4A6D;
+  --mark: #C49A6C;
+  --line: #D8D6D1;
+
+  --head: "Bricolage Grotesque", "Segoe UI", Helvetica, Arial, sans-serif;
+  --body: "Newsreader", Georgia, "Times New Roman", serif;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+
+main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+h1, h2, h3 {
+  font-family: var(--head);
+  line-height: 1.12;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 6.2vw, 3.9rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  max-width: 15ch;
+}
+
+h2 { font-size: 1.7rem; margin-bottom: 1rem; }
+h3 { font-size: 1.2rem; margin-bottom: 0.35rem; }
+
+a { color: var(--accent); }
+a:focus-visible { outline: 3px solid var(--mark); outline-offset: 3px; }
+
+/* ==========================================================================
+   Intro
+   ========================================================================== */
+header { padding: 4.5rem 0 3rem; }
+
+.tagline {
+  font-family: var(--head);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--accent);
+  margin: 1rem 0 1.5rem;
+}
+
+.intro {
+  max-width: 60ch;
+  font-size: 1.25rem;
+  margin: 0 0 2rem;
+}
+
+.btn {
+  display: inline-block;
+  font-family: var(--head);
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 6px;
+  border: 2px solid var(--accent);
+  margin: 0 0.5rem 0.5rem 0;
+}
+.btn.main { background: var(--accent); color: #fff; }
+.btn.alt { color: var(--accent); }
+
+/* ==========================================================================
+   Career timeline
+   ========================================================================== */
+.path { padding: 2rem 0 3rem; }
+
+.lead {
+  max-width: 60ch;
+  color: var(--muted);
+  margin: 0 0 1.75rem;
+}
+
+.track {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-top: 4px solid var(--line);
+}
+
+.track li {
+  position: relative;
+  padding: 1.1rem 0.9rem 0 0;
+}
+
+/* The dot above each job */
+.track li::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 4px solid var(--line);
+}
+
+/* Current role is highlighted */
+.track li.now { border-top: 4px solid var(--accent); margin-top: -4px; }
+.track li.now::before { background: var(--accent); border-color: var(--accent); }
+
+.yr, .job, .org { display: block; }
+
+.yr {
+  font-family: var(--head);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.job {
+  font-family: var(--head);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.25;
+  margin-top: 0.15rem;
+}
+
+.org {
+  font-size: 0.9rem;
+  line-height: 1.35;
+  color: var(--muted);
+  margin-top: 0.2rem;
+}
+
+/* ==========================================================================
+   Content sections
+   ========================================================================== */
+.block {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--line);
+}
+.block > h2 { margin-bottom: 1.5rem; }
+
+.item {
+  max-width: 68ch;
+  margin-bottom: 1.75rem;
+  padding: 0.1rem 0 0.1rem 1.1rem;
+  border-left: 4px solid var(--accent);
+}
+.item p { margin: 0; }
+.item .tools { margin-top: 0.5rem; font-size: 1rem; color: var(--muted); }
+
+/* Two columns side by side */
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.cols p, .cols ul { margin: 0; }
+.cols ul { padding-left: 1.1rem; }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+footer {
+  padding: 2.5rem 0 3rem;
+  border-top: 1px solid var(--line);
+}
+footer h2 { margin-bottom: 0.6rem; }
+footer p { margin: 0.25rem 0; }
+
+/* ==========================================================================
+   Mobile layout (narrow screens)
+   ========================================================================== */
+@media (max-width: 720px) {
+  .cols { grid-template-columns: 1fr; }
+
+  .track {
+    grid-template-columns: 1fr;
+    padding-left: 1.4rem;
+    border-top: 0;
+    border-left: 4px solid var(--line);
+  }
+  .track li { padding: 0 0 1.5rem 0; }
+  .track li::before { top: 0.15rem; left: -2.2rem; }
+  .track li.now { margin-top: 0; border-top: 0; }
+}
+
+/* ==========================================================================
+   Navigation and smooth browsing
+   ========================================================================== */
+
+/* Smooth scrolling, only for visitors who haven't asked for less motion.
+   scroll-padding keeps headings from hiding under the sticky menu. */
+html { scroll-padding-top: 5rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+/* Sticky menu */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0.8rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.5rem;
+}
+
+.site-nav a {
+  font-family: var(--head);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--ink);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.site-nav a:hover { color: var(--accent); border-bottom-color: var(--mark); }
+
+/* Soft hover on buttons */
+.btn { transition: background-color 0.2s, color 0.2s; }
+.btn.main:hover { background: #233A57; }
+.btn.alt:hover { background: var(--accent); color: #fff; }
+
+@media (max-width: 720px) {
+  .nav-inner { gap: 0.4rem 1.1rem; }
+}
+
+/* ==========================================================================
+   Floating buttons
+   ========================================================================== */
+.float-actions {
+  position: fixed;
+  right: 1rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.6rem;
+}
+
+.whatsapp {
+  font-family: var(--head);
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #fff;
+  background: #1FA855;
+  text-decoration: none;
+  padding: 0.7rem 1.1rem;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  transition: background-color 0.2s;
+}
+.whatsapp:hover { background: #178a45; }
+
+.to-top {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: #fff;
+  background: var(--accent);
+  text-decoration: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s, background-color 0.2s;
+}
+.to-top.show { opacity: 1; pointer-events: auto; }
+.to-top:hover { background: #233A57; }
